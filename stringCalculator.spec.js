@@ -32,10 +32,10 @@ describe('String Calculator add', function () {
   });
 
   it('should return the sum of numbers with new line delimiter', function() {
-    assert.equal(calculator.add('1\n2,3'), 6);
+    assert.equal(calculator.add('1\n2\n3,4'), 10);
   });
   
   it('should return the sum of numbers with custom delimiter', function() {
-    assert.equal(calculator.add('//;\n1;2'), 3);
+    assert.equal(calculator.add('//;\n1;2;3,4'), 10);
   });
 });
