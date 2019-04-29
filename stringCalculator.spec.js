@@ -12,7 +12,6 @@ describe('String Calculator add', function () {
     let data = [
       { input: '1', expected: 1 },
       { input: '11', expected: 11 },
-      { input: '-1', expected: -1 },
       { input: '3', expected: 3 },
     ];
     data.forEach((current, index, array) => {
@@ -23,12 +22,11 @@ describe('String Calculator add', function () {
 
   it('should return the sum of two numbers', function() {
     assert.equal(calculator.add('1,2'), 3);
-    assert.equal(calculator.add('-1,2'), 1);
   });
 
   it('should return the sum of many numbers', function() {
     assert.equal(calculator.add('1,2,3'), 6);
-    assert.equal(calculator.add('-1,2,8,10'), 19);
+    assert.equal(calculator.add('1,2,8,10'), 21);
   });
 
   it('should return the sum of numbers with new line delimiter', function() {
@@ -38,4 +36,12 @@ describe('String Calculator add', function () {
   it('should return the sum of numbers with custom delimiter', function() {
     assert.equal(calculator.add('//;\n1;2;3,4'), 10);
   });
+
+  it('should throw an exception when one or more numbers are negative', () => {
+    try {
+        const sum = calculator.add('1,2,-4,-7,3,-1');
+    } catch(e) {
+        assert.deepEqual(e.values, [-4, -7, -1]);
+    }
+})
 });
